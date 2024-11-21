@@ -1,0 +1,2 @@
+python-dotenv
+langchain-openai==0.2.9
