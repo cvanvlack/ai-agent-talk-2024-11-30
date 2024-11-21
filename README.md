@@ -23,3 +23,13 @@ Then install requirements
 ```
 pip install -r requirements.txt
 ```
+## Links
+
+Tutorial
+- [Langchain - Build an Agent](https://python.langchain.com/docs/tutorials/agents/)
+
+References
+- [Langchain - Chat models](https://python.langchain.com/docs/concepts/chat_models/)
+- [Langchain - Tools](https://python.langchain.com/docs/concepts/tools/)
+- [Langchain - Agents](https://python.langchain.com/docs/concepts/agents/)
+- [Langgraph - Agent Architectures](https://langchain-ai.github.io/langgraph/concepts/agentic_concepts/)
