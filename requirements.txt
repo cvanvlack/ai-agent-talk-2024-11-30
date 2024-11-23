@@ -1,2 +1,7 @@
 python-dotenv
-langchain-openai==0.2.9
+langchain-community 
+langgraph 
+langchain-anthropic 
+langchain-openai
+langgraph-checkpoint-sqlite
+tavily-python 
