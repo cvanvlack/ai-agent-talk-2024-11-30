@@ -4,6 +4,13 @@ from typing import Annotated
 from typing_extensions import TypedDict
 from langgraph.graph import StateGraph, START, END
 from langgraph.graph.message import add_messages
+from langchain_community.tools.tavily_search import TavilySearchResults
+
+from langgraph.prebuilt import ToolNode, tools_condition
+from langgraph.checkpoint.memory import MemorySaver
+
+
+
 # Load the environment variables
 load_dotenv()
 
@@ -34,7 +41,11 @@ graph_builder.add_edge(START, "chatbot")
 # Similarly, set a finish point. This instructs the graph "any time this node is run, you can exit."
 graph_builder.add_edge("chatbot", END)
 
-graph = graph_builder.compile()
+memory = MemorySaver()
+graph = graph_builder.compile(
+    checkpointer=memory,
+    interrupt_before=["tools"]
+    )
 
 def stream_graph_updates(user_input: str):
     for event in graph.stream({"messages": [("user", user_input)]}):
