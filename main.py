@@ -1,46 +1,23 @@
 from dotenv import load_dotenv
-from langchain_core.messages import HumanMessage
-from langchain_community.tools.tavily_search import TavilySearchResults
-from langchain_openai import ChatOpenAI
-from langgraph.prebuilt import create_react_agent
-from langgraph.checkpoint.memory import MemorySaver
 
-
+from typing import Annotated
+from typing_extensions import TypedDict
+from langgraph.graph import StateGraph, START, END
+from langgraph.graph.message import add_messages
+from state import State
 # Load the environment variables
 load_dotenv()
 
-#Set up the chat model
+graph_builder = StateGraph(State)
+
+from langchain_openai import ChatOpenAI
+
 model = ChatOpenAI(model="gpt-4")
 
-#Create the TavilySearch tools
-search = TavilySearchResults(max_results=2)
+def chatbot(state: State):
+    return {"messages": [model.invoke(state["messages"])]}
 
-# If we want, we can create other tools.
-# Once we have all the tools we want, we can put them in a list that we will reference later.
-tools = [search]
-
-#Create a way to store the memory of the conversation
-memory = MemorySaver()
-
-#Create an agent that gets executed by giving it the chat model, the tools and the memory to the checkpointer
-agent_executor = create_react_agent(model, tools, checkpointer=memory)
-
-# In order for the memory to keep track, we need to give it a threadId so that it can separate out the conversations
-config = {"configurable": {"thread_id": "abc123"}}
-
-print("************** First Message ****************")
-# We can then stream back the messages
-for chunk in agent_executor.stream(
-    {"messages": [HumanMessage(content="whats the weather in Kitchener, Ontario?")]}, config
-):
-    print(chunk)
-    print("----")
-
-print("************** Second Message ****************")
-#We can then add a folloq up message where the previous context is already included
-for chunk in agent_executor.stream(
-    {"messages": [HumanMessage(content="What should I wear?")]}, config
-):
-    print(chunk)
-    print("----")
-
+# The first argument is the unique node name
+# The second argument is the function or object that will be called whenever
+# the node is used.
+graph_builder.add_node("chatbot", chatbot)
