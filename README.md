@@ -1,7 +1,12 @@
 # ai-agent-talk-2024-11-30
 ## Links
+Repo
+```
+git clone https://github.com/cvanvlack/ai-agent-talk-2024-11-30.git
+```
 
 Tutorial
+- [Langchain Ecosystem](https://python.langchain.com/docs/introduction/)
 - [Langchain - Build an Agent](https://python.langchain.com/docs/tutorials/agents/)
 
 References
@@ -12,14 +17,9 @@ References
 
 
 ## Steps to install
+(Recommended) Install `pyenv`, it will automatically detect the correct Python version from the `.python-version` file. 
 
-```
-git clone https://github.com/cvanvlack/ai-agent-talk-2024-11-30.git
-```
-Install `pyenv`, it will automatically detect the correct Python version from the `.python-version` file. 
-
-Create and activate a Python virtual environment:
-
+(Required) Create and activate a Python virtual environment:
 ```
 python -m venv .venv
 
@@ -34,8 +34,30 @@ Then install requirements
 ```
 pip install -r requirements.txt
 ```
-We are using the Open AI models for this, but you can choose [any particular model](https://python.langchain.com/docs/tutorials/agents/#using-language-models) from the example. Make sure you have an Open AI API key set in your .env file
+## Services to Setup for this
+You will need an API Key from the following services for this tutorial
+- [Open AI](https://platform.openai.com/settings/organization/api-keys) - This is for the LLM. I would recommend setting up a [project](https://platform.openai.com/settings/organization/projects) for this and then having an API key that's specific to the project.
+- [Tavily](https://tavily.com/) - This is a search engine that is tailored for agents.
+- [Langsmith](https://smith.langchain.com/) - This is for observation of your agent calls. Technically not required for this demo, but the Langchain docs put it in, likely as a marketing vehicle.
+
+We are using the Open AI models for this, but you can choose [any particular model](https://python.langchain.com/docs/tutorials/agents/#using-language-models) from the example. Make sure you have an Open AI API key set in your .env file. There's an included [.env.example](.env.example) to see the format.
 ``` .env
 # Set your openai api key like this
 OPENAI_API_KEY=sk-...
+TAVILY_API_KEY=...
+LANGCHAIN_API_KEY=...
+LANGCHAIN_TRACING_V2=true
+LANGCHAIN_ENDPOINT="https://api.smith.langchain.com"
+LANGCHAIN_PROJECT=...
 ```
+## Goals
+
+- Talk about what an agent is
+  - Agent Architectures
+- Talk about some of the specific concepts in agents
+  - [Chat Models](https://python.langchain.com/docs/concepts/chat_models/)
+  - [Tools](https://python.langchain.com/docs/concepts/tools/)
+  - [Agents](https://python.langchain.com/docs/concepts/agents/)
+  - [Memory](https://python.langchain.com/docs/tutorials/agents/#streaming-tokens)
+- Non-Goals
+  - Streaming output [messages](https://python.langchain.com/docs/tutorials/agents/#streaming-messages) or [tokens](https://python.langchain.com/docs/tutorials/agents/#streaming-tokens)
