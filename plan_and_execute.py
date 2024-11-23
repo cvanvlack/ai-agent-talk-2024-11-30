@@ -1,46 +1,23 @@
 from dotenv import load_dotenv
 from langchain_community.tools.tavily_search import TavilySearchResults
+from langchain import hub
+from langchain_openai import ChatOpenAI
 
+from langgraph.prebuilt import create_react_agent
 
 # Load the environment variables
 load_dotenv()
 
 tools = [TavilySearchResults(max_results=3)]
 
-from langchain import hub
-from langchain_openai import ChatOpenAI
-
-from langgraph.prebuilt import create_react_agent
-
 # Get the prompt to use - you can modify this!
 prompt = hub.pull("ih/ih-react-agent-executor")
-prompt.pretty_print()
-
 # Choose the LLM that will drive the agent
 llm = ChatOpenAI(model="gpt-4-turbo-preview")
 agent_executor = create_react_agent(llm, tools, state_modifier=prompt)
 
-import operator
-from typing import Annotated, List, Tuple
-from typing_extensions import TypedDict
 
-
-class PlanExecute(TypedDict):
-    input: str
-    plan: List[str]
-    past_steps: Annotated[List[Tuple], operator.add]
-    response: str
-
-from pydantic import BaseModel, Field
-
-
-class Plan(BaseModel):
-    """Plan to follow in future"""
-
-    steps: List[str] = Field(
-        description="different steps to follow, should be in sorted order"
-    )
-
+from plan import Plan
 from langchain_core.prompts import ChatPromptTemplate
 
 planner_prompt = ChatPromptTemplate.from_messages(
@@ -67,24 +44,6 @@ planner.invoke(
     }
 )
 
-from typing import Union
-
-
-class Response(BaseModel):
-    """Response to user."""
-
-    response: str
-
-
-class Act(BaseModel):
-    """Action to perform."""
-
-    action: Union[Response, Plan] = Field(
-        description="Action to perform. If you want to respond to user, use Response. "
-        "If you need to further use tools to get the answer, use Plan."
-    )
-
-
 replanner_prompt = ChatPromptTemplate.from_template(
     """For the given objective, come up with a simple step by step plan. \
 This plan should involve individual tasks, that if executed correctly will yield the correct answer. Do not add any superfluous steps. \
@@ -102,15 +61,16 @@ You have currently done the follow steps:
 Update your plan accordingly. If no more steps are needed and you can return to the user, then respond with that. Otherwise, fill out the plan. Only add steps to the plan that still NEED to be done. Do not return previously done steps as part of the plan."""
 )
 
+from act import Act
 
 replanner = replanner_prompt | ChatOpenAI(
     model="gpt-4o", temperature=0
 ).with_structured_output(Act)
 
 
-from typing import Literal
 from langgraph.graph import END
 
+from plan_execute import PlanExecute
 
 async def execute_step(state: PlanExecute):
     plan = state["plan"]
