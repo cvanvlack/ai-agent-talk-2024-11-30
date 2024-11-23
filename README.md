@@ -9,6 +9,7 @@ Tutorial
 - [Langchain Ecosystem](https://python.langchain.com/docs/introduction/)
 - [Langchain - Build an Agent](https://python.langchain.com/docs/tutorials/agents/)
 - [LangGraph Quick Start](https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/introduction.ipynb)
+- [LangGraph - Plan and Execute](https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/plan-and-execute/plan-and-execute.ipynb)
 
 References
 - [Langchain - Chat models](https://python.langchain.com/docs/concepts/chat_models/)
