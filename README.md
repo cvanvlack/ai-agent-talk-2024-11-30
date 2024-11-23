@@ -54,6 +54,10 @@ LANGCHAIN_PROJECT=...
 
 - Talk about what an agent is
   - Agent Architectures
+  - [Elements](https://www.linkedin.com/pulse/chapter-1-ai-agents-agentic-behavior-ashish-bhatia-qkjre/)
+    - ![Agent Elements](https://media.licdn.com/dms/image/v2/D4E12AQHiM-RKsz3OMw/article-inline_image-shrink_1000_1488/article-inline_image-shrink_1000_1488/0/1709866945773?e=1737590400&v=beta&t=92Pelod03wtCelRP9bdP7jMuXJGbBYIwGnt15j3k7P4)
+  - [Researcher](https://docs.tavily.com/docs/gpt-researcher/introduction)
+    - ![Research Agent](https://cowriter-images.s3.amazonaws.com/architecture.png)
 - Talk about some of the specific concepts in agents
   - [Chat Models](https://python.langchain.com/docs/concepts/chat_models/)
   - [Tools](https://python.langchain.com/docs/concepts/tools/)
