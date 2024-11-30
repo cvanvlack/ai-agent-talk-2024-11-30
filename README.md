@@ -19,7 +19,9 @@ References
 - [Langchain - Agents](https://python.langchain.com/docs/concepts/agents/)
 - [Langgraph - Agent Architectures](https://langchain-ai.github.io/langgraph/concepts/agentic_concepts/)
 
+Langchain Stack
 
+![Langchain Stack](assets/langchain-stack.png)
 
 ## Steps to install
 (Recommended) Install `pyenv`, it will automatically detect the correct Python version from the `.python-version` file. 
