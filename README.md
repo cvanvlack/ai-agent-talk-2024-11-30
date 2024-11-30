@@ -4,17 +4,21 @@ Repo
 ```
 git clone https://github.com/cvanvlack/ai-agent-talk-2024-11-30.git
 ```
+![QR Code](assets/github-repo-qr-code.png)
 
 Tutorial
 - [Langchain Ecosystem](https://python.langchain.com/docs/introduction/)
 - [Langchain - Build an Agent](https://python.langchain.com/docs/tutorials/agents/)
 - [LangGraph Quick Start](https://github.com/langchain-ai/langgraph/blob/main/docs/docs/tutorials/introduction.ipynb)
+- [LLM Agents Learning Path](https://maven.com/p/bafd83/llm-agents-learning-path)
+- [Deep Learning AI - Agents in LangGraph](https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/)
 
 References
 - [Langchain - Chat models](https://python.langchain.com/docs/concepts/chat_models/)
 - [Langchain - Tools](https://python.langchain.com/docs/concepts/tools/)
 - [Langchain - Agents](https://python.langchain.com/docs/concepts/agents/)
 - [Langgraph - Agent Architectures](https://langchain-ai.github.io/langgraph/concepts/agentic_concepts/)
+
 
 
 ## Steps to install
@@ -51,18 +55,3 @@ LANGCHAIN_TRACING_V2=true
 LANGCHAIN_ENDPOINT="https://api.smith.langchain.com"
 LANGCHAIN_PROJECT=...
 ```
-## Goals
-
-- Talk about what an agent is
-  - Agent Architectures
-  - [Elements](https://www.linkedin.com/pulse/chapter-1-ai-agents-agentic-behavior-ashish-bhatia-qkjre/)
-    - ![Agent Elements](https://media.licdn.com/dms/image/v2/D4E12AQHiM-RKsz3OMw/article-inline_image-shrink_1000_1488/article-inline_image-shrink_1000_1488/0/1709866945773?e=1737590400&v=beta&t=92Pelod03wtCelRP9bdP7jMuXJGbBYIwGnt15j3k7P4)
-  - [Researcher](https://docs.tavily.com/docs/gpt-researcher/introduction)
-    - ![Research Agent](https://cowriter-images.s3.amazonaws.com/architecture.png)
-- Talk about some of the specific concepts in agents
-  - [Chat Models](https://python.langchain.com/docs/concepts/chat_models/)
-  - [Tools](https://python.langchain.com/docs/concepts/tools/)
-  - [Agents](https://python.langchain.com/docs/concepts/agents/)
-  - [Memory](https://python.langchain.com/docs/tutorials/agents/#streaming-tokens)
-- Non-Goals
-  - Streaming output [messages](https://python.langchain.com/docs/tutorials/agents/#streaming-messages) or [tokens](https://python.langchain.com/docs/tutorials/agents/#streaming-tokens)
